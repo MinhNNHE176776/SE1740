@@ -1,20 +1,23 @@
+<%-- 
+    Document   : class
+    Created on : Jul 3, 2023, 6:12:46 PM
+    Author     : DELL
+--%>
+<%@page import="model.student"%>
+<%@page import="java.util.List"%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html>
-
-<head>
-    <title>Mon's Uni</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/38998be14e.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <div class="header">
+    <head>
+        <title>Mon's Uni</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/38998be14e.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="header">
         <div class="header_contents">
             <div class="logo1">
                 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +32,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <i class="fa-solid fa-school"></i>
                     <select  class="select-box" name="links" id="" size="1" onchange="window.location.href=this.value";>
                         <option value="">School</option>
-                        <option value="http://localhost:9999/StudentManagement/schoolinf.html">1.Information</option>
+                        <option value="http://localhost:9999/StudentManagement/schoolinf.html">1.Information  </option>
                         <option value="http://localhost:9999/StudentManagement/map.html">2.Map</option>   
                        
                     </select>
@@ -79,18 +82,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         <option value="1.">3.Study Result Report</option>
                     </select>
                 </div>
-                
             </div>
         </div>
     </div>
-    <div class="back">
-        <a href="http://localhost:9999/StudentManagement/home.html">Back to main</a>
-    </div>
-    <div class="schoolinf">
-        <h1>Rank *** technology university in VietNam</h1>
-    </div>
-    
-
-</body>
-
+        <a href="http://localhost:9999/StudentManagement/classController">Add Student</a>
+        <% List<student> students =(List<student>) request.getAttribute("studentlist"); %>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <% for(student student: students){ %>
+               
+                <tr>
+                    <td><%=student.getId() %></td>
+                    <td><%=student.getName() %></td>
+                    <td><%=student.getAge() %></td>
+                </tr>
+                <%}%>
+            </tbody>
+        </table>
+    </body>
 </html>
