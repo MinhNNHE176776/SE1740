@@ -1,11 +1,11 @@
+package controller;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
 
-import dal.StudentDAO;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,17 +14,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.student;
-import service.studentService;
+import java.awt.BorderLayout;
+import model.Person;
 
 /**
  *
  * @author DELL
  */
-@WebServlet("/classController")
-public class classController extends HttpServlet {
+@WebServlet(urlPatterns={"/person/create"})
+public class PersonCreateController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,10 +39,10 @@ public class classController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet classController</title>");  
+            out.println("<title>Servlet MVCContrller</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet classController at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet MVCContrller at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,9 +59,11 @@ public class classController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       //form add new student(id,name,age)
-      
-       
+       // processRequest(request, response);
+      RequestDispatcher dispatcher=request.getRequestDispatcher("/view/personCreate.jsp");
+        
+        dispatcher.forward(request, response);
+    
     } 
 
     /** 
@@ -74,33 +74,21 @@ public class classController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+   protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
         String id=request.getParameter("id");
         String name=request.getParameter("name");
-        String className=request.getParameter("className");
-        //save db
-        student student=new student();
-        student.setId(Integer.parseInt(id));
-        student.setName(name);
-        student.setClassName(className);
         
-        StudentDAO sDao=new StudentDAO();
-        try {
-   //         out.print(sDao.insertStudent(student));
-            sDao.insertStudent(student);
-            
-        } catch (Exception ex) {
-            ex.printStackTrace(out);
-        }
-       
-       studentService studentAdd = new studentService();
-       studentAdd.create(student);
-       
-       
-        response.sendRedirect("classShow");
-       }
+        Person p=new Person();
+        p.setId(Integer.parseInt(id));
+        p.setName(name);
+        
+        request.setAttribute("person", p);
+        
+        RequestDispatcher dispatcher=request.getRequestDispatcher("/view/personDetail.jsp");
+        dispatcher.forward(request, response);
+    }
+        
 
     /** 
      * Returns a short description of the servlet.

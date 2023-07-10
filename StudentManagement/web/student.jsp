@@ -24,8 +24,8 @@
             </div> 
             
             <div>
-                <label>Age:</label>
-                <input type="number" name="age"/>
+                <label>Class Name:</label>
+                <input type="text" name="className"/>
             </div> 
             
             <div>               

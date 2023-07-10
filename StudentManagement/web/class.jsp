@@ -85,14 +85,14 @@
             </div>
         </div>
     </div>
-        <a href="http://localhost:9999/StudentManagement/classController">Add Student</a>
+        <a href="http://localhost:9999/StudentManagement/student.jsp">Add Student</a>
         <% List<student> students =(List<student>) request.getAttribute("studentlist"); %>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Age</th>
+                    <th>Class Name</th>
                 </tr>
             </thead>
             
@@ -102,7 +102,7 @@
                 <tr>
                     <td><%=student.getId() %></td>
                     <td><%=student.getName() %></td>
-                    <td><%=student.getAge() %></td>
+                    <td><%=student.getClassName() %></td>
                 </tr>
                 <%}%>
             </tbody>

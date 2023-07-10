@@ -12,15 +12,33 @@ import java.util.logging.Logger;
  */
 public class student {
     private int id;
-    private int age;
+    private String className;
     private String name;
+    private int gender;
+    float point;
 
+    public float getPoint() {
+        return point;
+    }
+
+    public void setPoint(float point) {
+        this.point = point;
+    }
+    
     public int getId() {
         return id;
     }
 
-    public int getAge() {
-        return age;
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+ public String getClassName() {
+        return className;
     }
 
     public String getName() {
@@ -31,9 +49,10 @@ public class student {
         this.id = id;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setClassName(String className) {
+        this.className = className;
     }
+
 
     public void setName(String name) {
         this.name = name;
