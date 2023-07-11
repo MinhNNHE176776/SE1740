@@ -97,7 +97,7 @@
     </sql:query>  
         
     <c:forEach var="j" items="${className.rows}">                
-        <a href="${j.className}" >${j.className}</a>
+        <a href="classManage?class=${j.className}" >${j.className}</a>
         <br> 
     </c:forEach> 
     

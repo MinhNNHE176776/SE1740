@@ -38,8 +38,18 @@ public class SearchServlet extends HttpServlet{
     
     
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       String term = request.getParameter("searchName");
+        ArrayList<student> sList = new ArrayList<>();
+        StudentDAO sDAO = new StudentDAO();
+        if(term == null || term.equalsIgnoreCase("")){
+            sList = sDAO.getStudents();
+        } else {
+            sList = sDAO.getStudentBySearchTerm(term);
+        }
+//        response.getWriter().print(sList.toArray());
+        request.getSession().setAttribute("sList", sList);
+        request.getRequestDispatcher("search.jsp").forward(request, response); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
     @Override

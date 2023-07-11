@@ -55,7 +55,7 @@ public class classShow extends HttpServlet {
     throws ServletException, IOException {
        List<student> students = studentService.getAll();
        request.setAttribute("studentlist", students);
-       RequestDispatcher dispatcher=request.getRequestDispatcher("/class.jsp");
+       RequestDispatcher dispatcher=request.getRequestDispatcher("/add.jsp");
        
        dispatcher.forward(request, response);
     } 

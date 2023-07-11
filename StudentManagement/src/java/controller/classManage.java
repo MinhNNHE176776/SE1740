@@ -5,6 +5,7 @@
 
 package controller;
 
+import dal.StudentDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import model.student;
 
 /**
  *
@@ -55,7 +58,15 @@ public class classManage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String className = request.getParameter("class");
+        //response.getWriter().println(className);
+        ArrayList<student> sList = new ArrayList<>();
+        StudentDAO sDAO = new StudentDAO();
+        sList = sDAO.getStudentbyClass(className);
+       
+//        response.getWriter().print(sList.toArray());
+        request.getSession().setAttribute("sList", sList);
+        request.getRequestDispatcher("class.jsp").forward(request, response);
     } 
 
     /** 
@@ -68,7 +79,7 @@ public class classManage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     /** 

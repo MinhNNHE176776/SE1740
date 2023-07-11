@@ -30,10 +30,10 @@
                     
                         <c:forEach items="${sessionScope.sList}" var="s">
                             <tr>
-                                <td>${s.id}</td>
-                                <td>${s.name}</td>
-                                <td>${s.gender}</td>
-                                <td>${s.class}</td>
+                                <td>${ID}</td>
+                                <td>${name}</td>
+                                <td>${Gender}</td>
+                                <td>${className}</td>
                             </tr> 
                         </c:forEach>
                     
