@@ -1,10 +1,12 @@
+<%-- 
+    Document   : classfile
+    Created on : Jul 11, 2023, 10:33:20 PM
+    Author     : DELL
+--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-<html>
-
 <head>
     <title>Mon's Uni</title>
     <meta charset="UTF-8">
@@ -29,8 +31,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <i class="fa-solid fa-school"></i>
                     <select  class="select-box" name="links" id="" size="1" onchange="window.location.href=this.value";>
                         <option value="">School</option>
-                        <option value="http://127.0.0.1:5500/web/schoolinf.html">1.Information</option>
-                        <option value="http://127.0.0.1:5500/web/map.html">2.Map</option>   
+                        <option value="http://localhost:9999/StudentManagement/schoolinf.html">1.Information</option>
+                        <option value="http://localhost:9999/StudentManagement/map.html">2.Map</option>   
                        
                     </select>
                 </div>
@@ -38,8 +40,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <i class="fa-solid fa-chalkboard"></i>
                     <select class="select-box">
                         <option value="">Class</option>
-                        <option value="1.">1.Class File</option>
-                        <option value="1.">2.Subject</option>
+                        <option value="http://localhost:9999/StudentManagement/classfile.html">1.Class File</option>
+                        <option value="http://localhost:9999/StudentManagement/subject.html">2.Subject</option>
                         <option value="1.">3.</option>
                     </select>
                 </div>
@@ -84,8 +86,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </div>
     </div>
     <div class="back">
-        <a href="http://127.0.0.1:5500/web/home.html">Back to main</a>
+        <a href="http://localhost:9999/StudentManagement/home.html">Back to main</a>
     </div>
+    <sql:setDataSource var="db" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"  
+            url="jdbc:sqlserver://DESKTOP-OMSOF7F:1433;databaseName=PROJECT"  
+            user="minh"  password="minh123"
+     />
+    <sql:query dataSource="${db}" var="className">  
+        SELECT className from class;  
+    </sql:query>  
+        
+    <c:forEach var="j" items="${className.rows}">                
+        <a href="${j.className}" >${j.className}</a>
+        <br> 
+    </c:forEach> 
     
     
 

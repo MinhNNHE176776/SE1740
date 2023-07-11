@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -41,8 +41,8 @@ public class StudentDAO extends DBContext{
     public ArrayList<student> getStudentBySearchTerm(String term) {
         ArrayList<student> students = new ArrayList<>();
         try {
-            String sql = "SELECT s.id,s.name,s.gender,s.dob FROM Student s\n"
-                    + "WHERE s.name LIKE ?";
+            String sql = "SELECT ID,name,gender,className,avgmark FROM student\n"
+                    + "WHERE name LIKE ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, "%" + term + "%");
             ResultSet rs = statement.executeQuery();
@@ -81,6 +81,27 @@ public class StudentDAO extends DBContext{
      if(lineAffected == 1) return true;
         return false;
     }
-    
+    public ArrayList<student> getStudentbyClass(){
+        ArrayList<student> students = new ArrayList<>();
+        try {
+            String sql = "SELECT ID,name,Gender,className FROM student \n"
+                    + "WHERE className like '?'";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                student s = new student();
+                s.setId(rs.getInt("ID"));
+                s.setName(rs.getString("name"));
+                s.setGender(rs.getInt("Gender"));
+                s.setClassName(rs.getString("className"));
+//                s.setPoint(rs.getInt("avgmark"));
+                students.add(s);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return students;
+    }
 }
  
