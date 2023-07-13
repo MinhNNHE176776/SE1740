@@ -8,6 +8,14 @@
         <servlet-name>StudentList</servlet-name>
         <url-pattern>/stlist</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>classPoint</servlet-name>
+        <url-pattern>/classPoint</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>savePoint</servlet-name>
+        <url-pattern>/savePoint</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -24,6 +32,14 @@
     <servlet>
         <servlet-name>StudentList</servlet-name>
         <servlet-class>controller.StudentList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>classPoint</servlet-name>
+        <servlet-class>controller.classPoint</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>savePoint</servlet-name>
+        <servlet-class>controller.savePoint</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>classManage</servlet-name>

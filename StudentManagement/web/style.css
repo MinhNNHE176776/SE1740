@@ -63,6 +63,13 @@
     justify-content: center;
     position: relative;
 }
+.cover{
+    margin-top: 50px;
+    margin-left:  25%;
+}
+.cover img{
+    width:60%;
+}
 .select-box{
     border: none;
     appearance: none;
