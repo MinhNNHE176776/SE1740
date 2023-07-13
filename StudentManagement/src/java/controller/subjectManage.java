@@ -5,12 +5,16 @@
 
 package controller;
 
+import dal.StudentDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import model.student;
+import model.subject;
 
 /**
  *
@@ -53,7 +57,15 @@ public class subjectManage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+       String subjectcode = request.getParameter("subject");
+       PrintWriter out =response.getWriter();
+        ArrayList<subject> sList = new ArrayList<>();
+        StudentDAO sDAO = new StudentDAO();
+        sList = sDAO.getSubject(subjectcode);
+        out.println(sList.toString());
+//        response.getWriter().print(sList.toArray());
+        request.getSession().setAttribute("sList", sList);
+        response.sendRedirect("subject.jsp");
     } 
 
     /** 

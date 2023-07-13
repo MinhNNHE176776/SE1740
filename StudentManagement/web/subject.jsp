@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-<html>
+<%-- 
+    Document   : search
+    Created on : Jun 28, 2023, 8:28:40 AM
+    Author     : dell
+--%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
     <head>
         <title>Mon's Uni</title>
         <meta charset="UTF-8">
@@ -23,8 +26,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Noto+Sans+Chakma&display=swap"
                         rel="stylesheet">
                     <p style="font-family:Dancing Script">Mon's Uni</p>
-                    <img style="width:60px" src="album/school.png">
-                    <h1 style="font-family:Dancing Script">never too late to study</h1>
                 </div>
                 <div class="menu">
                     <div class="menu1">
@@ -41,17 +42,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         <select  class="select-box" name="links" id="" size="1" onchange="window.location.href = this.value";>
                             <option value="">Class</option>
                             <option value="http://localhost:9999/StudentManagement/classfile.jsp">1.Class File</option>
-                            <option value="http://localhost:9999/StudentManagement/subjectfile.jsp">2.Subject</option>
+                            <option value="http://localhost:9999/StudentManagement/subject.html">2.Subject</option>
 
                         </select>
                     </div>
                     <div class="menu3">
                         <i class="fa-solid fa-users"></i>
-
-                        <select  class="select-box" name="links" id="" size="1" onchange="window.location.href = this.value";>
+                        <select class="select-box">
                             <option value="">Student</option>
-                            <option value="http://localhost:9999/StudentManagement/search.jsp">1.Student File</option>
-                            <option value="http://localhost:9999/StudentManagement/stlist">2.Student Movement</option>
+                            <option value="1.">1.Student File</option>
+                            <option value="1.">2.Student Movement</option>
 
                         </select>
                     </div>
@@ -82,13 +82,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                             <option value="1.">3.Study Result Report</option>
                         </select>
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>
-    </body>
+        <div class="back">
+        <a href="http://localhost:9999/StudentManagement/subjectfile.jsp">Back</a>
+    </div>
+            <form action="subjectManage" method="GET">
+                <div>
+                    <table border="1px">
+                        <tr>
+                            <td>Subject Code</td>
+                            <td>Subject Name</td>
+                            <td>Link</td>
+                        </tr>
 
+                        <c:forEach items="${sessionScope.sList}" var="s">
+                            <tr>
+                                <td>${s.subjectcode}</td>
+                                <td>${s.subjectname}</td>
+                                <td><a href ="${s.link}"target="_blank">${s.link} </a> </td>
+                               
+                            </tr> 
+                        </c:forEach>
+
+                    </table>
+                </div>
+            </form>
+
+    </body>
 </html>

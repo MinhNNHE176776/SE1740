@@ -40,8 +40,8 @@
                     <i class="fa-solid fa-chalkboard"></i>
                     <select class="select-box">
                         <option value="">Class</option>
-                        <option value="http://localhost:9999/StudentManagement/classfile.html">1.Class File</option>
-                        <option value="http://localhost:9999/StudentManagement/subject.html">2.Subject</option>
+                         <option value="http://localhost:9999/StudentManagement/classfile.jsp">1.Class File</option>
+                        <option value="http://localhost:9999/StudentManagement/subjectfile.jsp">2.Subject</option>
                         <option value="1.">3.</option>
                     </select>
                 </div>
@@ -50,8 +50,8 @@
                     <select class="select-box">
                         <option value="">Student</option>
                         <option value="1.">1.Student File</option>
-                        <option value="1.">2.Student Movement</option>
-                        <option value="1.">3.Student Health</option>
+                        <option value="http://localhost:9999/StudentManagement/classShow">2.Student Movement</option>
+                       
                     </select>
                 </div>
                 <div class="menu4">

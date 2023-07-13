@@ -1,20 +1,23 @@
+<%-- 
+    Document   : class
+    Created on : Jul 3, 2023, 6:12:46 PM
+    Author     : DELL
+--%>
+<%@page import="model.student"%>
+<%@page import="java.util.List"%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html>
-
-<head>
-    <title>Mon's Uni</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/38998be14e.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <div class="header">
+    <head>
+        <title>Mon's Uni</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/38998be14e.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="header">
         <div class="header_contents">
             <div class="logo1">
                 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,11 +39,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </div>
                 <div class="menu2">
                     <i class="fa-solid fa-chalkboard"></i>
-                    <select  class="select-box" name="links" id="" size="1" onchange="window.location.href=this.value";>
+                    <select class="select-box">
                         <option value="">Class</option>
-                         <option value="http://localhost:9999/StudentManagement/classfile.html">1.Class File</option>
-                        <option value="http://localhost:9999/StudentManagement/subject.html">2.Subject</option>
-                        
+                        <option value="1.">1.Class File</option>
+                        <option value="1.">2.Subject</option>
+                        <option value="1.">3.</option>
                     </select>
                 </div>
                 <div class="menu3">
@@ -82,32 +85,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </div>
         </div>
     </div>
-    <div class="back">
-        <a href="http://localhost:9999/StudentManagement/home.html">Back to main</a>
-    </div>
-    <div class="subject-content">
-        <a href="./subject/PRF192.jsp" >PRF192</a>
-        <br>
-        <a href="./subject/PRO192.jsp" >PRO192</a>
-        <br>
-        <a href="./subject/JPD113.jsp" >JPD113</a>
-        <br>
-        <a href="./subject/JPD123.jsp" >JPD123</a>
-        <br>
-        <a href="./subject/IOT102.jsp" >IOT102</a>
-        <br>
-        <a href="./subject/CSD203.jsp" >CSD203</a>
-        <br>
-        <a href="./subject/DBI202.jsp" >DBI202</a>
-        <br>
-        <a href="./subject/CEA101.jsp" >CEA101</a>
-        <br>
-        <a href="./subject/CSI101.jsp" >CSI101</a>
-        <br>
-        <a href="./subject/PRJ301.jsp" >PRJ301</a>
-        <br>
-        
-    </div>
-</body>
-
+        <a href="http://localhost:9999/StudentManagement/add.jsp">Add Student</a>
+        <% List<student> students =(List<student>) request.getAttribute("studentlist"); %>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Class Name</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <% for(student student: students){ %>
+               
+                <tr>
+                    <td><%=student.getId() %></td>
+                    <td><%=student.getName() %></td>
+                    <td><%=student.getGender() %></td>
+                    <td><%=student.getClassName() %></td>
+                </tr>
+                <%}%>
+            </tbody>
+        </table>
+    </body>
 </html>
