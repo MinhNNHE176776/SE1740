@@ -59,14 +59,15 @@ public class classManage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String className = request.getParameter("class");
-        //response.getWriter().println(className);
+        PrintWriter out =response.getWriter();
         ArrayList<student> sList = new ArrayList<>();
         StudentDAO sDAO = new StudentDAO();
         sList = sDAO.getStudentbyClass(className);
-       
+        out.println(sList.toString());
 //        response.getWriter().print(sList.toArray());
         request.getSession().setAttribute("sList", sList);
-        request.getRequestDispatcher("class.jsp").forward(request, response);
+        response.sendRedirect("class.jsp");
+//        request.getRequestDispatcher("class.jsp").forward(request, response);
     } 
 
     /** 

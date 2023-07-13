@@ -22,7 +22,10 @@
                 <label>Name:</label>
                 <input type="text" name="name"/>
             </div> 
-            
+            <div>
+                <label>Gender:</label>
+                <input type="number" name="gender"/>
+            </div> 
             <div>
                 <label>Class Name:</label>
                 <input type="text" name="className"/>

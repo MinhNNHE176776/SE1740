@@ -85,10 +85,10 @@ public class StudentDAO extends DBContext{
         ArrayList<student> students = new ArrayList<>();
         try {
             String sql = "SELECT ID,name,Gender,className FROM student \n"
-                    + "WHERE className like '?'";
-            
+                    + "WHERE className like ?";
+            conn=new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, "%" + term + "%");
+           statement.setString(1, "%" + term + "%");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 student s = new student();
