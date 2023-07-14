@@ -5,12 +5,14 @@
 
 package controller;
 
+import dal.StudentDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.student;
 
 /**
  *
@@ -67,12 +69,31 @@ public class savePoint extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String point1=request.getParameter("point");
-//         String point2=request.getParameter("point");
-//          String point3=request.getParameter("point");
-        out.print(point1);
-//                out.print(point2);
-//                        out.print(point3);
+        String IOT102=request.getParameter("IOT102");
+        String PRJ301=request.getParameter("PRJ301");
+        String CSD201=request.getParameter("CSD201");
+        String CEA201=request.getParameter("CEA201");
+        String PRF192=request.getParameter("PRF192");
+        String DBI202=request.getParameter("DBI202");
+        String id=request.getParameter("id");
+    
+        student s = new student();
+        s.setPoint((Float.parseFloat(CSD201)+Float.parseFloat(IOT102)+Float.parseFloat(PRJ301))/3);
+        s.setId(Integer.parseInt(id));
+        out.println(s.getId());
+        out.println(s.getPoint());
+        out.println(CSD201);
+        out.println(PRJ301);
+        out.println(IOT102);
+//        StudentDAO sDao = new StudentDAO();
+//        try {
+//   //         out.print(sDao.insertStudent(student));
+//            sDao.insertPoint(s);
+//            
+//        } catch (Exception ex) {
+//            ex.printStackTrace(out);
+//        }
+        //response.sendRedirect("classpoint.jsp");
     }
 
     /** 

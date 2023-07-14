@@ -92,10 +92,10 @@
                 <div>
                     <table border="1px">
                         <tr>
-                            <td>id</td>
-                            <td>name</td>
-                            <td>gender</td>
-                            <td>class</td>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Gender</td>
+                            <td>Class Name</td>
                         </tr>
 
                         <c:forEach items="${sessionScope.sList}" var="s">

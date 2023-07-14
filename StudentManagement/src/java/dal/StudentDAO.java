@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -14,14 +14,16 @@ import java.util.logging.Logger;
 import model.student;
 import model.subject;
 
-public class StudentDAO extends DBContext{
-    Connection conn=null;
+public class StudentDAO extends DBContext {
+
+    Connection conn = null;
+
     public ArrayList<student> getStudents() {
-        
+
         ArrayList<student> students = new ArrayList<>();
         try {
             String sql = "SELECT * FROM student";
-            conn=new DBContext().getConnection();
+            conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -38,11 +40,12 @@ public class StudentDAO extends DBContext{
         }
         return students;
     }
+
     public student getStudent(int id) {
         try {
             String sql = "SELECT ID,name,gender,className FROM student s\n"
                     + "WHERE ID = ?";
-            conn=new DBContext().getConnection();
+            conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
@@ -52,7 +55,7 @@ public class StudentDAO extends DBContext{
                 s.setName(rs.getString("name"));
                 s.setGender(rs.getInt("Gender"));
                 s.setClassName(rs.getString("className"));
-               
+
                 return s;
             }
 
@@ -61,12 +64,13 @@ public class StudentDAO extends DBContext{
         }
         return null;
     }
+
     public ArrayList<student> getStudentBySearchTerm(String term) {
         ArrayList<student> students = new ArrayList<>();
         try {
             String sql = "SELECT ID,name,Gender,className,avgmark FROM student\n"
                     + "WHERE name like ?";
-            conn=new DBContext().getConnection();
+            conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, "%" + term + "%");
             ResultSet rs = statement.executeQuery();
@@ -85,34 +89,62 @@ public class StudentDAO extends DBContext{
         }
         return students;
     }
-    public boolean insertStudent(student student)throws Exception{
+
+    public boolean insertStudent(student student) throws Exception {
         int lineAffected = 0;
-        try{
-            String insertQuery = "INSERT INTO student (ID,name,Gender,className,avgmark) VALUES(?,?,?,?,?)";
-            conn=new DBContext().getConnection();
+        try {
+            String insertQuery = "INSERT INTO student (ID,name,Gender,className) VALUES(?,?,?,?)";
+            conn = new DBContext().getConnection();
             PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
             insertStatement.setInt(1, student.getId());
             insertStatement.setString(2, student.getName());
             insertStatement.setInt(3, student.getGender());
             insertStatement.setString(4, student.getClassName());
-            insertStatement.setFloat(5, student.getPoint());
+//            insertStatement.setFloat(5, student.getPoint());
             lineAffected = insertStatement.executeUpdate();
-             insertStatement.close();
+            insertStatement.close();
             conn.close();
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
-    }
-     if(lineAffected == 1) return true;
+        }
+        if (lineAffected == 1) {
+            return true;
+        }
         return false;
     }
-    public ArrayList<student> getStudentbyClass(String term){
+
+    public boolean insertPoint(student student) throws Exception {
+    int lineAffected = 0;
+    try {
+        String updateQuery = "UPDATE student\n"
+                + "SET avgmark = ?\n"
+                + "WHERE ID = ?;";
+        conn = new DBContext().getConnection();
+        PreparedStatement updateStatement = conn.prepareStatement(updateQuery);
+        updateStatement.setFloat(1, student.getPoint());
+        updateStatement.setInt(2, student.getId());
+        
+        lineAffected = updateStatement.executeUpdate();
+        
+        updateStatement.close();
+        conn.close();
+    } catch (Exception ex) {
+        Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        throw ex; // Rethrow the exception to notify the caller about the error
+    }
+    
+    return lineAffected == 1;
+}
+
+
+    public ArrayList<student> getStudentbyClass(String term) {
         ArrayList<student> students = new ArrayList<>();
         try {
             String sql = "SELECT ID,name,Gender,className FROM student \n"
                     + "WHERE className like ?";
-            conn=new DBContext().getConnection();
+            conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-           statement.setString(1, "%" + term + "%");
+            statement.setString(1, "%" + term + "%");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 student s = new student();
@@ -129,14 +161,15 @@ public class StudentDAO extends DBContext{
         }
         return students;
     }
-    public ArrayList<subject> getSubject(String term){
+
+    public ArrayList<subject> getSubject(String term) {
         ArrayList<subject> subjects = new ArrayList<>();
         try {
             String sql = "SELECT * FROM subject \n"
                     + "WHERE subjectcode like ?";
-            conn=new DBContext().getConnection();
+            conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-           statement.setString(1, "%" + term + "%");
+            statement.setString(1, "%" + term + "%");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 subject s = new subject();
@@ -151,14 +184,15 @@ public class StudentDAO extends DBContext{
         }
         return subjects;
     }
-     public void updateStudent(student s) {
+
+    public void updateStudent(student s) {
         try {
             String sql = "UPDATE [student]\n"
                     + "   SET [name] = ?\n"
                     + "      ,[Gender] = ?\n"
                     + "      ,[className] = ?\n"
                     + " WHERE [id] = ?";
-            conn=new DBContext().getConnection();
+            conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, s.getName());
             statement.setInt(2, s.getGender());
@@ -173,7 +207,7 @@ public class StudentDAO extends DBContext{
     public void deleteStudent(int id) {
         try {
             String sql = "DELETE Student WHERE id=?";
-            conn=new DBContext().getConnection();
+            conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -182,4 +216,3 @@ public class StudentDAO extends DBContext{
         }
     }
 }
- 

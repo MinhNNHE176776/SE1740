@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
     <head>
         <title>Mon's Uni</title>
         <meta charset="UTF-8">
@@ -15,8 +16,7 @@
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/38998be14e.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <div class="header">
+    <div class="header">
             <div class="header_contents">
                 <div class="logo1">
                     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +25,8 @@
                         href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Noto+Sans+Chakma&display=swap"
                         rel="stylesheet">
                     <p style="font-family:Dancing Script">Mon's Uni</p>
+                    <img style="width:60px" src="album/school.png">
+                    <h1 style="font-family:Dancing Script">never too late to study</h1>
                 </div>
                 <div class="menu">
                     <div class="menu1">
@@ -52,18 +54,18 @@
                             <option value="">Student</option>
                             <option value="http://localhost:9999/StudentManagement/search.jsp">1.Student File</option>
                             <option value="http://localhost:9999/StudentManagement/stlist">2.Student Movement</option>
-
+                            <option value="http://localhost:9999/StudentManagement/classpoint.jsp">3.Grade Entry</option>
                         </select>
                     </div>
-                    <div class="menu4">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <select class="select-box">
-                            <option value="">Summation</option>
-                            <option value="1.">1.Spring Summation</option>
-                            <option value="1.">2.Summer Summation</option>
-                            <option value="1.">3.Fall Summation</option>
-                        </select>
-                    </div>
+                    <!--                    <div class="menu4">
+                                            <i class="fa-solid fa-graduation-cap"></i>
+                                            <select class="select-box">
+                                                <option value="">Summation</option>
+                                                <option value="1.">1.Spring Summation</option>
+                                                <option value="1.">2.Summer Summation</option>
+                                                <option value="1.">3.Fall Summation</option>
+                                            </select>
+                                        </div>-->
                     <div class="menu5">
                         <img style="width:18px" src="album/bar-chart.png">
                         <select class="select-box">
@@ -82,7 +84,6 @@
                             <option value="1.">3.Study Result Report</option>
                         </select>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -102,6 +103,7 @@
                         <td>Name</td>
                         <td>Gender</td>
                         <td>Class Name</td>
+                        <td>Average Point</td>
                     </tr>
 
                     <c:forEach items="${sessionScope.sList}" var="s">
@@ -110,6 +112,7 @@
                             <td>${s.name}</td>
                             <td>${s.gender}</td>
                             <td>${s.className}</td>
+                            <td>${s.point}</td>
                         </tr> 
                     </c:forEach>
 

@@ -1,10 +1,13 @@
+<%-- 
+    Document   : statistic
+    Created on : Jul 14, 2023, 9:31:22 PM
+    Author     : DELL
+--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html>
-
     <head>
         <title>Mon's Uni</title>
         <meta charset="UTF-8">
@@ -69,7 +72,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         <select  class="select-box" name="links" id="" size="1" onchange="window.location.href = this.value";>
                             <option value="">Statistics</option>
                             <option value="http://localhost:9999/StudentManagement/statistic.jsp">1.School Statistics</option>
-                            
+
                         </select>
                     </div>
                     <div class="menu6">
@@ -84,14 +87,48 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </div>
             </div>
         </div>
-        <div class="cover">
-            <img  src="album/cover.jpg">
+        <div class="back">
+            <a href="http://localhost:9999/StudentManagement/home.html">Back to main</a>
         </div>
-    </body>
-    <footer>
-        <div class="footer">
-            <img src="album/f.png">
-        </div>
-        
-    </footer>
+        <sql:setDataSource var="db" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"  
+                           url="jdbc:sqlserver://DESKTOP-OMSOF7F:1433;databaseName=PROJECT"  
+                           user="minh"  password="minh123"
+                           />
+        <sql:query dataSource="${db}" var="totalStudentsQuery">  
+            SELECT COUNT(ID) AS totalStudents FROM student;  
+        </sql:query>
+
+        <sql:query dataSource="${db}" var="distinctClassesQuery">
+            SELECT COUNT(DISTINCT className) AS distinctClasses FROM student;
+        </sql:query>
+
+        <sql:query dataSource="${db}" var="femaleStudentsQuery">
+            SELECT COUNT(ID) AS femaleStudents FROM student WHERE Gender = 0;
+        </sql:query>
+
+        <sql:query dataSource="${db}" var="maleStudentsQuery">
+            SELECT COUNT(ID) AS maleStudents FROM student WHERE Gender = 1;
+        </sql:query>
+
+        <h1 style="color:blue;text-align:center;">Statistic</h1>
+        <table border="1px">
+            <thead>
+                <tr>
+                    <th>Number of Students</th>
+                    <th>Number of Classes</th>
+                    <th>Female</th>
+                    <th>Male</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>${totalStudentsQuery.rows[0].totalStudents}</td>
+                    <td>${distinctClassesQuery.rows[0].distinctClasses}</td>
+                    <td>${femaleStudentsQuery.rows[0].femaleStudents}</td>
+                    <td>${maleStudentsQuery.rows[0].maleStudents}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
 </html>

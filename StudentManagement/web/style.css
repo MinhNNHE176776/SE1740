@@ -91,3 +91,21 @@
     margin-top:20px;
     margin-left:25%;
 }
+.content-news{
+    
+}
+.content-news a{
+    
+    color:rgb(109, 109, 244);
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.footer{
+    margin-top:200px;
+    margin-left:20%;
+    
+}
+.footer img{
+    width:70%;
+}

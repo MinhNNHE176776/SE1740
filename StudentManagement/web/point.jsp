@@ -1,7 +1,7 @@
 <%-- 
-    Document   : classfile
-    Created on : Jul 11, 2023, 10:33:20 PM
-    Author     : DELL
+Document   : classfile
+Created on : Jul 11, 2023, 10:33:20 PM
+Author     : DELL
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
@@ -54,15 +54,15 @@
 
                     </select>
                 </div>
-                <div class="menu4">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                    <select class="select-box">
-                        <option value="">Summation</option>
-                        <option value="1.">1.Spring Summation</option>
-                        <option value="1.">2.Summer Summation</option>
-                        <option value="1.">3.Fall Summation</option>
-                    </select>
-                </div>
+                <!--                <div class="menu4">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                    <select class="select-box">
+                                        <option value="">Summation</option>
+                                        <option value="1.">1.Spring Summation</option>
+                                        <option value="1.">2.Summer Summation</option>
+                                        <option value="1.">3.Fall Summation</option>
+                                    </select>
+                                </div>-->
                 <div class="menu5">
                     <img style="width:18px" src="album/bar-chart.png">
                     <select class="select-box">
@@ -91,20 +91,26 @@
     <%String classpoint = request.getParameter("class");
     request.setAttribute("myclass", classpoint);
     %>
+    <%String id = request.getParameter("id");
+            request.setAttribute("ID", id);
+    %>
     <sql:setDataSource var="db" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"  
                        url="jdbc:sqlserver://DESKTOP-OMSOF7F:1433;databaseName=PROJECT"  
                        user="minh"  password="minh123"
                        />
     <sql:query dataSource="${db}" var="timetable">  
         SELECT subjectcode from timetable where className like '${myclass}';  
+
     </sql:query>  
     <form action="/StudentManagement/savePoint" method="post">
-        <c:forEach var="j" items="${timetable.rows}"> 
+
+        <c:forEach var="j" begin="0" end="2" items="${timetable.rows}"> 
             <div>
                 ${j.subjectcode}
-                <input type="number" name="point"/>
-            </div>
-            <br>
+                <input type="text" name="${j.subjectcode}"/>
+                <c:out value="${ID}"></c:out>
+                </div>
+                <br>
         </c:forEach> 
         <div>               
             <button type="submit">Submit</button>

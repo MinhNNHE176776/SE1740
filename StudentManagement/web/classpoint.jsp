@@ -54,7 +54,7 @@
                        
                     </select>
                 </div>
-                <div class="menu4">
+<!--                <div class="menu4">
                     <i class="fa-solid fa-graduation-cap"></i>
                     <select class="select-box">
                         <option value="">Summation</option>
@@ -62,7 +62,7 @@
                         <option value="1.">2.Summer Summation</option>
                         <option value="1.">3.Fall Summation</option>
                     </select>
-                </div>
+                </div>-->
                 <div class="menu5">
                     <img style="width:18px" src="album/bar-chart.png">
                     <select class="select-box">
