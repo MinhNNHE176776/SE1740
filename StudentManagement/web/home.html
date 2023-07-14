@@ -74,11 +74,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     </div>
                     <div class="menu6">
                         <i class="fa-sharp fa-solid fa-book-open"></i>
-                        <select class="select-box">
+                    <select  class="select-box" name="links" id="" size="1" onchange="window.location.href = this.value";>
                             <option value="">Report</option>
-                            <option value="1.">1.Class Report</option>
-                            <option value="1.">2.Student Report</option>
-                            <option value="1.">3.Study Result Report</option>
+                            <option value="http://localhost:9999/StudentManagement/report.jsp">School Report</option>
+                            
                         </select>
                     </div>
                 </div>
@@ -89,6 +88,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </div>
     </body>
     <footer>
+        <style>
+            .footer{
+                margin-top:100px;
+            }
+        </style>
         <div class="footer">
             <img src="album/f.png">
         </div>

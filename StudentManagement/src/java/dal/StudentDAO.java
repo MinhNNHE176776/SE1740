@@ -32,7 +32,7 @@ public class StudentDAO extends DBContext {
                 s.setName(rs.getString("name"));
                 s.setGender(rs.getInt("Gender"));
                 s.setClassName(rs.getString("className"));
-                s.setPoint(rs.getInt("avgmark"));
+                s.setPoint(rs.getFloat("avgmark"));
                 students.add(s);
             }
         } catch (Exception ex) {
@@ -80,7 +80,7 @@ public class StudentDAO extends DBContext {
                 s.setName(rs.getString("name"));
                 s.setGender(rs.getInt("Gender"));
                 s.setClassName(rs.getString("className"));
-                s.setPoint(rs.getInt("avgmark"));
+                s.setPoint(rs.getFloat("avgmark"));
                 students.add(s);
             }
 

@@ -75,25 +75,25 @@ public class savePoint extends HttpServlet {
         String CEA201=request.getParameter("CEA201");
         String PRF192=request.getParameter("PRF192");
         String DBI202=request.getParameter("DBI202");
-        String id=request.getParameter("id");
+        String id=(String) request.getSession().getAttribute("id");
     
         student s = new student();
-        s.setPoint((Float.parseFloat(CSD201)+Float.parseFloat(IOT102)+Float.parseFloat(PRJ301))/3);
+        s.setPoint((float)((Float.parseFloat(CSD201)+Float.parseFloat(IOT102)+Float.parseFloat(PRJ301))/3.00));
         s.setId(Integer.parseInt(id));
         out.println(s.getId());
         out.println(s.getPoint());
         out.println(CSD201);
         out.println(PRJ301);
         out.println(IOT102);
-//        StudentDAO sDao = new StudentDAO();
-//        try {
-//   //         out.print(sDao.insertStudent(student));
-//            sDao.insertPoint(s);
-//            
-//        } catch (Exception ex) {
-//            ex.printStackTrace(out);
-//        }
-        //response.sendRedirect("classpoint.jsp");
+        StudentDAO sDao = new StudentDAO();
+        try {
+            out.print(sDao.insertPoint(s));
+            sDao.insertPoint(s);
+            
+        } catch (Exception ex) {
+            ex.printStackTrace(out);
+        }
+        response.sendRedirect("classpoint.jsp");
     }
 
     /** 

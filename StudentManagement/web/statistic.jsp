@@ -77,11 +77,10 @@
                     </div>
                     <div class="menu6">
                         <i class="fa-sharp fa-solid fa-book-open"></i>
-                        <select class="select-box">
+                        <select  class="select-box" name="links" id="" size="1" onchange="window.location.href = this.value";>
                             <option value="">Report</option>
-                            <option value="1.">1.Class Report</option>
-                            <option value="1.">2.Student Report</option>
-                            <option value="1.">3.Study Result Report</option>
+                            <option value="http://localhost:9999/StudentManagement/report.jsp">School Report</option>
+
                         </select>
                     </div>
                 </div>
@@ -111,24 +110,331 @@
         </sql:query>
 
         <h1 style="color:blue;text-align:center;">Statistic</h1>
-        <table border="1px">
-            <thead>
-                <tr>
-                    <th>Number of Students</th>
-                    <th>Number of Classes</th>
-                    <th>Female</th>
-                    <th>Male</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>${totalStudentsQuery.rows[0].totalStudents}</td>
-                    <td>${distinctClassesQuery.rows[0].distinctClasses}</td>
-                    <td>${femaleStudentsQuery.rows[0].femaleStudents}</td>
-                    <td>${maleStudentsQuery.rows[0].maleStudents}</td>
-                </tr>
-            </tbody>
-        </table>
+        <h3 style="color:blue;text-align:center;">School</h3>
+        <div class="two-class1">
+            <h3 style="color:blue;">School</h3>
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>Number of Students</th>
+                        <th>Number of Classes</th>
+                        <th>Female</th>
+                        <th>Male</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${totalStudentsQuery.rows[0].totalStudents}</td>
+                        <td>${distinctClassesQuery.rows[0].distinctClasses}</td>
+                        <td>${femaleStudentsQuery.rows[0].femaleStudents}</td>
+                        <td>${maleStudentsQuery.rows[0].maleStudents}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <style>
+            .two-class {
+                display:flex;
+                justify-content:space-around;
+                margin-bottom: 20px;
+
+            }
+            .two-header{
+                display:flex;
+                justify-content:space-around;
+            }
+            .two-class1 {
+                margin-left: 180px;
+            }
+            .two-class1 h3{
+               
+                margin-left: 150px;
+                margin-bottom: 20px;
+
+            }
+
+        </style>
+        <sql:query dataSource="${db}" var="totalStudentsQuery">  
+            SELECT COUNT(ID) AS totalStudents FROM student where className like 'SE1740';  
+        </sql:query>
+
+        <sql:query dataSource="${db}" var="femaleStudentsQuery">
+            SELECT COUNT(ID) AS femaleStudents FROM student WHERE Gender = 0 and className like 'SE1740';
+        </sql:query>
+
+        <sql:query dataSource="${db}" var="maleStudentsQuery">
+            SELECT COUNT(ID) AS maleStudents FROM student WHERE Gender = 1 and className like 'SE1740';
+        </sql:query>
+
+        <h3 style="color:blue;text-align:center;">Class</h3>
+        <div class="two-header">
+            <h3 style="color:blue;">SE1740</h3>
+            <h3 style="color:blue;">SE1741</h3>
+        </div>
+        <div class="two-class">
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>Number of Students</th>
+
+                        <th>Female</th>
+                        <th>Male</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${totalStudentsQuery.rows[0].totalStudents}</td>
+
+                        <td>${femaleStudentsQuery.rows[0].femaleStudents}</td>
+                        <td>${maleStudentsQuery.rows[0].maleStudents}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <sql:query dataSource="${db}" var="totalStudentsQuery">  
+                SELECT COUNT(ID) AS totalStudents FROM student where className like 'SE1741';  
+            </sql:query>
+
+            <sql:query dataSource="${db}" var="femaleStudentsQuery">
+                SELECT COUNT(ID) AS femaleStudents FROM student WHERE Gender = 0 and className like 'SE1741';
+            </sql:query>
+
+            <sql:query dataSource="${db}" var="maleStudentsQuery">
+                SELECT COUNT(ID) AS maleStudents FROM student WHERE Gender = 1 and className like 'SE1741';
+            </sql:query>
+
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>Number of Students</th>
+
+                        <th>Female</th>
+                        <th>Male</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${totalStudentsQuery.rows[0].totalStudents}</td>
+
+                        <td>${femaleStudentsQuery.rows[0].femaleStudents}</td>
+                        <td>${maleStudentsQuery.rows[0].maleStudents}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <sql:query dataSource="${db}" var="totalStudentsQuery">  
+            SELECT COUNT(ID) AS totalStudents FROM student where className like 'SE1742';  
+        </sql:query>
+
+        <sql:query dataSource="${db}" var="femaleStudentsQuery">
+            SELECT COUNT(ID) AS femaleStudents FROM student WHERE Gender = 0 and className like 'SE1742';
+        </sql:query>
+
+        <sql:query dataSource="${db}" var="maleStudentsQuery">
+            SELECT COUNT(ID) AS maleStudents FROM student WHERE Gender = 1 and className like 'SE1742';
+        </sql:query>
+
+        <div class="two-header">
+            <h3 style="color:blue;">SE1742</h3>
+            <h3 style="color:blue;">SE1743</h3>
+        </div>
+        <div class="two-class">
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>Number of Students</th>
+
+                        <th>Female</th>
+                        <th>Male</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${totalStudentsQuery.rows[0].totalStudents}</td>
+
+                        <td>${femaleStudentsQuery.rows[0].femaleStudents}</td>
+                        <td>${maleStudentsQuery.rows[0].maleStudents}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <sql:query dataSource="${db}" var="totalStudentsQuery">  
+                SELECT COUNT(ID) AS totalStudents FROM student where className like 'SE1743';  
+            </sql:query>
+
+            <sql:query dataSource="${db}" var="femaleStudentsQuery">
+                SELECT COUNT(ID) AS femaleStudents FROM student WHERE Gender = 0 and className like 'SE1743';
+            </sql:query>
+
+            <sql:query dataSource="${db}" var="maleStudentsQuery">
+                SELECT COUNT(ID) AS maleStudents FROM student WHERE Gender = 1 and className like 'SE1743';
+            </sql:query>
 
 
+
+
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>Number of Students</th>
+
+                        <th>Female</th>
+                        <th>Male</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${totalStudentsQuery.rows[0].totalStudents}</td>
+
+                        <td>${femaleStudentsQuery.rows[0].femaleStudents}</td>
+                        <td>${maleStudentsQuery.rows[0].maleStudents}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <sql:query dataSource="${db}" var="totalStudentsQuery">  
+            SELECT COUNT(ID) AS totalStudents FROM student where className like 'SE1744';  
+        </sql:query>
+
+        <sql:query dataSource="${db}" var="femaleStudentsQuery">
+            SELECT COUNT(ID) AS femaleStudents FROM student WHERE Gender = 0 and className like 'SE1744';
+        </sql:query>
+
+        <sql:query dataSource="${db}" var="maleStudentsQuery">
+            SELECT COUNT(ID) AS maleStudents FROM student WHERE Gender = 1 and className like 'SE1744';
+        </sql:query>
+
+        <div class="two-header">
+            <h3 style="color:blue;">SE1744</h3>
+            <h3 style="color:blue;">SE1745</h3>
+        </div>
+        <div class="two-class">
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>Number of Students</th>
+
+                        <th>Female</th>
+                        <th>Male</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${totalStudentsQuery.rows[0].totalStudents}</td>
+
+                        <td>${femaleStudentsQuery.rows[0].femaleStudents}</td>
+                        <td>${maleStudentsQuery.rows[0].maleStudents}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <sql:query dataSource="${db}" var="totalStudentsQuery">  
+                SELECT COUNT(ID) AS totalStudents FROM student where className like 'SE1745';  
+            </sql:query>
+
+            <sql:query dataSource="${db}" var="femaleStudentsQuery">
+                SELECT COUNT(ID) AS femaleStudents FROM student WHERE Gender = 0 and className like 'SE1745';
+            </sql:query>
+
+            <sql:query dataSource="${db}" var="maleStudentsQuery">
+                SELECT COUNT(ID) AS maleStudents FROM student WHERE Gender = 1 and className like 'SE1745';
+            </sql:query>
+
+
+
+
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>Number of Students</th>
+
+                        <th>Female</th>
+                        <th>Male</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${totalStudentsQuery.rows[0].totalStudents}</td>
+
+                        <td>${femaleStudentsQuery.rows[0].femaleStudents}</td>
+                        <td>${maleStudentsQuery.rows[0].maleStudents}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <sql:query dataSource="${db}" var="totalStudentsQuery">  
+            SELECT COUNT(ID) AS totalStudents FROM student where className like 'SE1746';  
+        </sql:query>
+
+        <sql:query dataSource="${db}" var="femaleStudentsQuery">
+            SELECT COUNT(ID) AS femaleStudents FROM student WHERE Gender = 0 and className like 'SE1746';
+        </sql:query>
+
+        <sql:query dataSource="${db}" var="maleStudentsQuery">
+            SELECT COUNT(ID) AS maleStudents FROM student WHERE Gender = 1 and className like 'SE1746';
+        </sql:query>
+
+        <div class="two-header">
+            <h3 style="color:blue;">SE1746</h3>
+            <h3 style="color:blue;">SE1747</h3>
+        </div>
+        <div class="two-class">
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>Number of Students</th>
+
+                        <th>Female</th>
+                        <th>Male</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${totalStudentsQuery.rows[0].totalStudents}</td>
+
+                        <td>${femaleStudentsQuery.rows[0].femaleStudents}</td>
+                        <td>${maleStudentsQuery.rows[0].maleStudents}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <sql:query dataSource="${db}" var="totalStudentsQuery">  
+                SELECT COUNT(ID) AS totalStudents FROM student where className like 'SE1747';  
+            </sql:query>
+
+            <sql:query dataSource="${db}" var="femaleStudentsQuery">
+                SELECT COUNT(ID) AS femaleStudents FROM student WHERE Gender = 0 and className like 'SE1747';
+            </sql:query>
+
+            <sql:query dataSource="${db}" var="maleStudentsQuery">
+                SELECT COUNT(ID) AS maleStudents FROM student WHERE Gender = 1 and className like 'SE1747';
+            </sql:query>
+
+
+
+
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>Number of Students</th>
+
+                        <th>Female</th>
+                        <th>Male</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${totalStudentsQuery.rows[0].totalStudents}</td>
+
+                        <td>${femaleStudentsQuery.rows[0].femaleStudents}</td>
+                        <td>${maleStudentsQuery.rows[0].maleStudents}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 </html>

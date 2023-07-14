@@ -92,7 +92,7 @@ Author     : DELL
     request.setAttribute("myclass", classpoint);
     %>
     <%String id = request.getParameter("id");
-            request.setAttribute("ID", id);
+            request.getSession().setAttribute("id",id);
     %>
     <sql:setDataSource var="db" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"  
                        url="jdbc:sqlserver://DESKTOP-OMSOF7F:1433;databaseName=PROJECT"  
